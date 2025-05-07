@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - OrgMart</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: white;
+      color: #3a4a14;
+      min-height: 100vh;
+    }
+    
+    .font-patrick {
+      font-family: 'Patrick Hand', cursive;
+    }
+    
+    /* Navbar styles */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .logo {
+      color: #3a4f1a;
+      font-weight: 600;
+      font-size: 1.25rem;
+      text-decoration: none;
+      font-family: sans-serif;
+    }
+    
+    .nav-links {
+      display: none;
+      gap: 2rem;
+      font-weight: 500;
+      font-size: 0.875rem;
+    }
+    
+    @media (min-width: 768px) {
+      .nav-links {
+        display: flex;
+      }
+    }
+    
+    .nav-links a {
+      color: inherit;
+      text-decoration: none;
+    }
+    
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+    
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .search-form {
+      display: none;
+      position: relative;
+      color: #3a4a14;
+    }
+    
+    @media (min-width: 768px) {
+      .search-form {
+        display: block;
+      }
+    }
+    
+    .search-input {
+      border: 1px solid #3a4a14;
+      border-radius: 0.375rem;
+      padding: 0.375rem 0.75rem 0.375rem 2.25rem;
+      font-size: 0.75rem;
+      font-style: italic;
+      color: #3a4a14;
+    }
+    
+    .search-input::placeholder {
+      color: #3a4a14;
+    }
+    
+    .search-input:focus {
+      outline: none;
+      box-shadow: 0 0 0 1px #3a4a14;
+    }
+    
+    .search-icon {
+      position: absolute;
+      left: 0.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.75rem;
+    }
+    
+    .nav-icon {
+      font-size: 1.125rem;
+      color: #3a4a14;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .cart-icon {
+      position: relative;
+    }
+    
+    .cart-badge {
+      position: absolute;
+      top: -0.25rem;
+      right: -0.5rem;
+      background-color: #3a4a14;
+      color: white;
+      font-size: 0.625rem;
+      font-weight: 600;
+      border-radius: 9999px;
+      width: 1rem;
+      height: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Main content styles */
+    main {
+      max-width: 80rem;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+    
+    @media (min-width: 768px) {
+      main {
+        flex-direction: row;
+      }
+    }
+    
+    /* Checkout form styles */
+    .checkout-section {
+      flex: 1;
+      max-width: 36rem;
+    }
+    
+    .checkout-title {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1.875rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    fieldset {
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
+      border: none;
+    }
+    
+    legend {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .payment-options {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+    }
+    
+    .payment-option {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      cursor: pointer;
+    }
+    
+    .payment-option.disabled {
+      color: #9ca3af;
+      cursor: not-allowed;
+    }
+    
+    .payment-option input {
+      color: #3a4a14;
+    }
+    
+    .payment-option input:focus {
+      outline: none;
+      box-shadow: 0 0 0 1px #3a4a14;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-label {
+      display: block;
+      font-size: 0.875rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .form-input {
+      width: 100%;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.375rem;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+    }
+    
+    .form-input:focus {
+      outline: none;
+      box-shadow: 0 0 0 1px #3a4a14;
+    }
+    
+    .form-row {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-col {
+      flex: 1;
+    }
+    
+    .form-col.small {
+      max-width: 7.5rem;
+    }
+    
+    .save-card {
+      display: inline-flex;
+      align-items: center;
+      color: #9ca3af;
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+      cursor: pointer;
+    }
+    
+    .save-card input {
+      margin-right: 0.5rem;
+    }
+    
+    .pay-button {
+      width: 100%;
+      background-color: #3a4a14;
+      color: white;
+      font-weight: 600;
+      padding: 0.75rem;
+      border-radius: 0.375rem;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .pay-button:hover {
+      background-color: #2e3a0f;
+    }
+    
+    .privacy-text {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #9ca3af;
+    }
+    
+    /* Cart review styles */
+    .cart-review {
+      background-color: #fff8e9;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      max-width: 28rem;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .cart-title {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1.25rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    
+    .cart-items {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .cart-item-img {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 0.25rem;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      padding: 0.25rem;
+      object-fit: contain;
+    }
+    
+    .cart-item-details {
+      flex: 1;
+    }
+    
+    .cart-item-name {
+      font-weight: 600;
+      font-size: 0.875rem;
+      margin-bottom: 0.125rem;
+    }
+    
+    .cart-item-quantity {
+      font-size: 0.75rem;
+      color: #374151;
+      margin-bottom: 0.25rem;
+    }
+    
+    .cart-item-price {
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+    
+    .order-summary {
+      background-color: #c1cca0;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      font-size: 0.75rem;
+      color: #3a4a14;
+      max-width: 17.5rem;
+      margin: 0 auto;
+    }
+    
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.25rem;
+    }
+    
+    .summary-row.total {
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="nav-left">
+      <a href="#" class="logo">OrgMart<span style="font-family: 'Permanent Marker', cursive;">🌱</span></a>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Shop</a></li>
+        <li><a href="#">Sustainability</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <form class="search-form">
+        <label class="sr-only">Search</label>
+        <div class="search-container">
+          <i class="fas fa-search search-icon"></i>
+          <input type="search" class="search-input" placeholder="Try searching for Fresh Broccoli">
+        </div>
+      </form>
+      <button class="nav-icon" aria-label="User account"><i class="far fa-user"></i></button>
+      <button class="nav-icon" aria-label="Wishlist"><i class="far fa-heart"></i></button>
+      <button class="nav-icon cart-icon" aria-label="Cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-badge">3</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main>
+    <!-- Left side: Checkout form -->
+    <section class="checkout-section">
+      <h2 class="checkout-title font-patrick">Checkout</h2>
+      <form>
+        <fieldset>
+          <legend>Payment</legend>
+          <div class="form-group">
+            <label class="form-label" style="font-weight: 600;">Pay With:</label>
+            <div class="payment-options">
+              <label class="payment-option">
+                <input type="radio" name="payment" value="card" checked>
+                <span>Card</span>
+              </label>
+              <label class="payment-option disabled">
+                <input type="radio" name="payment" value="bank" disabled>
+                <span>Bank</span>
+              </label>
+              <label class="payment-option disabled">
+                <input type="radio" name="payment" value="transfer" disabled>
+                <span>Transfer</span>
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cardNumber" class="form-label">Card Number</label>
+            <input type="text" id="cardNumber" name="cardNumber" class="form-input" placeholder="1234 5678 910">
+          </div>
+          <div class="form-row">
+            <div class="form-col">
+              <label for="expiration" class="form-label">Expiration Date</label>
+              <input type="text" id="expiration" name="expiration" class="form-input" placeholder="MM/YY">
+            </div>
+            <div class="form-col small">
+              <label for="cvv" class="form-label">CVV</label>
+              <input type="text" id="cvv" name="cvv" class="form-input" placeholder="123">
+            </div>
+          </div>
+          <label class="save-card disabled">
+            <input type="checkbox" disabled>
+            Save card details
+          </label>
+          <button type="button" class="pay-button" onclick="window.location.href='f.html';">Pay ₹666</button>
+        </fieldset>
+        <p class="privacy-text">
+          Your personal data will be used to process your order, support your
+          experience throughout this website, and for other purposes described in
+          our privacy policy.
+        </p>
+      </form>
+    </section>
+
+    <!-- Right side: Review Your Cart -->
+    <aside class="cart-review" aria-label="Review Your Cart">
+      <h3 class="cart-title font-patrick">Review Your Cart</h3>
+      <ul class="cart-items">
+        <li class="cart-item">
+          <img src="https://storage.googleapis.com/a1aa/image/5a1ee89f-4581-4a09-fe01-1f8e1ca48507.jpg" 
+               alt="Jar of cold-pressed forest honey with honey dripper pouring honey" 
+               class="cart-item-img">
+          <div class="cart-item-details">
+            <p class="cart-item-name">Cold - Pressed Forest Honey</p>
+            <p class="cart-item-quantity">300 gm x4</p>
+            <p class="cart-item-price">₹350</p>
+          </div>
+        </li>
+        <li class="cart-item">
+          <img src="https://storage.googleapis.com/a1aa/image/f3c78320-4253-4b45-c072-b207a2556ded.jpg" 
+               alt="King Alphonso mangoes with green leaves and sliced mango" 
+               class="cart-item-img">
+          <div class="cart-item-details">
+            <p class="cart-item-name">King Alphonso Mangoes</p>
+            <p class="cart-item-quantity">600 gm x4</p>
+            <p class="cart-item-price">₹280</p>
+          </div>
+        </li>
+        <li class="cart-item">
+          <img src="https://storage.googleapis.com/a1aa/image/83e9c450-cf5a-42a6-a8f0-4352435126d1.jpg" 
+               alt="Pile of farm potatoes" 
+               class="cart-item-img">
+          <div class="cart-item-details">
+            <p class="cart-item-name">Farm Potatoes</p>
+            <p class="cart-item-quantity">1 kg x4</p>
+            <p class="cart-item-price">₹50</p>
+          </div>
+        </li>
+      </ul>
+      <div class="order-summary" aria-label="Order summary">
+        <div class="summary-row">
+          <span>Sub- Total</span>
+          <span>₹680</span>
+        </div>
+        <div class="summary-row">
+          <span>Delivery Charges</span>
+          <span>₹50</span>
+        </div>
+        <div class="summary-row">
+          <span>Handling</span>
+          <span>₹10</span>
+        </div>
+        <div class="summary-row">
+          <span>GST</span>
+          <span>₹28</span>
+        </div>
+        <div class="summary-row">
+          <span>Discount</span>
+          <span>- ₹102</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total</span>
+          <span>₹666</span>
+        </div>
+      </div>
+    </aside>
+  </main>
+  
+</body>
+</html>

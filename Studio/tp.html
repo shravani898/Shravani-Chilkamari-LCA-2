@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OrgMart</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: #3a4f1a;
+    }
+
+    .top-bar {
+      background-color: #a4c96f;
+      height: 32px;
+      width: 100%;
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-left a {
+      text-decoration: none;
+      color: #3a4f1a;
+      font-size: 14px;
+    }
+
+    .logo {
+      font-weight: 600;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo span {
+      margin-left: 4px;
+      font-family: 'Permanent Marker', cursive;
+      font-size: 18px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .search-form {
+      position: relative;
+    }
+
+    .search-form input {
+      border: 1px solid #3a4f1a;
+      border-radius: 4px;
+      padding: 6px 28px 6px 12px;
+      font-size: 12px;
+      font-style: italic;
+      width: 200px;
+    }
+
+    .search-form button {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #3a4f1a;
+      cursor: pointer;
+    }
+
+    .icon-link {
+      font-size: 20px;
+      color: #3a4f1a;
+      text-decoration: none;
+    }
+
+    .stats-section {
+      max-width: 1200px;
+      margin: 24px auto;
+      padding: 0 16px;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .stat-box {
+      background-color: #fff5e1;
+      border: 1px solid #f7d88c;
+      border-radius: 12px;
+      width: 144px;
+      height: 96px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .stat-box p:first-child {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 24px;
+      margin: 0;
+    }
+
+    .stat-box p:last-child {
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: -4px;
+    }
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff;
+    }
+
+
+    .carousel-container {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  max-height: 420px;
+
+}
+
+.carousel-wrapper {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+}
+
+.carousel-slide {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-slide img {
+  display: block;
+  height: auto;
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
+
+    .dots {
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    .dot {
+      display: inline-block;
+      height: 12px;
+      width: 12px;
+      margin: 0 6px;
+      background-color: #fdd9a0;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .dot.active {
+      background-color: #fdbf00;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+  
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin: 30px 0 20px;
+    }
+
+    .section-title span {
+      background: #6d8c00;
+      padding: 10px 30px;
+      border-radius: 50px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f7f7;
+      color: #1e3a1e;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      background-color: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+    }
+
+    .heart-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      color: #1e3a1e;
+    }
+
+    .heart-icon.filled {
+      color: red;
+    }
+
+    .product-card img {
+      width: 140px;
+      height: 140px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .product-title {
+      text-align: center;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+
+    .product-select {
+      width: 100%;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      border: 1px solid #1e3a1e;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      color: #1e3a1e;
+    }
+
+    .product-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .price {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .add-btn {
+      background-color: #1e3a1e;
+      color: white;
+      padding: 5px 16px;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .add-btn:hover {
+      background-color: #2f552f;
+    }   
+
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f7f7;
+      padding: 2rem;
+      margin: 0;
+      color: #1e3a1e;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .product-card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      transition: transform 0.3s ease;
+      height: 320px;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+    }
+
+    .heart-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #1e3a1e;
+      transition: color 0.3s ease;
+    }
+
+    .heart-icon.filled {
+      color: red;
+    }
+
+    .product-card img {
+      width: 140px;
+      height: 140px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .product-title {
+      text-align: center;
+      font-size: 0.9rem;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .product-select {
+      width: 100%;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      border: 1px solid #1e3a1e;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      color: #1e3a1e;
+    }
+
+    .product-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .price {
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    .add-btn {
+      background-color: #1e3a1e;
+      color: white;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .add-btn:hover {
+      background-color: #2f552f;
+    }
+
+    @media (max-width: 992px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff9f4;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .product-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      background: white;
+      text-align: center;
+      transition: transform 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      height: 100%;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-details {
+      padding: 15px;
+    }
+
+    .heart {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      color: gray;
+    }
+
+    .heart.liked {
+      color: red;
+    }
+
+    /* Footer styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+
+    footer {
+      background-color: #fef4e9;
+      padding-top: 40px;
+      padding-bottom: 0;
+      padding-left: 24px;
+      padding-right: 24px;
+      margin-top: 64px;
+      position: relative;
+      max-width: 1440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer-container {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    @media (min-width: 768px) {
+      .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 0;
+      }
+    }
+
+    .footer-column {
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+      color: #1a1a1a;
+    }
+
+    .footer-logo h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: #2f4620;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      line-height: 1;
+    }
+
+    .footer-logo span {
+      font-family: 'Permanent Marker', cursive;
+      color: #3a4f1a;
+      font-size: 18px;
+      margin-left: 4px;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+      display: inline-block;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-title {
+      font-weight: 800;
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 14px;
+      text-decoration: none;
+      color: #1a1a1a;
+    }
+
+    .social-links a:hover {
+      text-decoration: underline;
+    }
+
+    .social-links span {
+      margin: 0 5px;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 40px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #000;
+    }
+
+    .footer-note a {
+      color: #000;
+      text-decoration: underline;
+      margin: 0 4px;
+    }
+    footer {
+  background-image: url('Group 63.png');
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: cover;
+}
+
+            .product-card-link {
+              text-decoration: none;
+              color: inherit;
+              display: block;
+            }
+            
+
+  
+  </style>
+</head>
+<body>
+
+  <div class="top-bar"></div>
+
+  <nav>
+    <div class="nav-left">
+      <a href="#" class="logo">OrgMart <span>🌱</span></a>
+      <a href="#">Home</a>
+      <a href="#">Shop</a>
+      <a href="#">Sustainability</a>
+      <a href="#">About Us</a>
+      <a href="#">Contact Us</a>
+    </div>
+    <div class="nav-right">
+      <form class="search-form" role="search">
+        <input type="search" placeholder="Search Seasonal Picks Near You" />
+        <button type="submit"><i class="fas fa-search"></i></button>
+      </form>
+      <a href="#" class="icon-link" aria-label="User Account"><i class="fas fa-user"></i></a>
+      <a href="#" class="icon-link" aria-label="Favorites"><i class="fas fa-heart"></i></a>
+      <a href="#" class="icon-link" aria-label="Shopping Cart"><i class="fas fa-shopping-cart"></i></a>
+    </div>
+  </nav>
+
+  <section class="stats-section">
+    <div class="stat-box">
+      <p>40+</p>
+      <p>Cities</p>
+    </div>
+    <div class="stat-box">
+      <p>NPOP</p>
+      <p>Verified Products</p>
+    </div>
+    <div class="stat-box">
+      <p>314+</p>
+      <p>Trusted Farmers</p>
+    </div>
+  </section>
+  <div class="carousel-container" aria-label="Organic Product Highlights">
+    <div class="carousel-wrapper" id="carouselWrapper">
+      <div class="carousel-slide">
+        <img src="Mango website.png" alt="Organic mango Banner" />
+      </div>
+      <div class="carousel-slide">
+        <img src="Broccoli image.png" alt="Fresh Broccoli Banner" />
+      </div>
+      <div class="carousel-slide">
+        <img src="Rectangle 3359.png" alt="Alphanso Mangoes Banner" />
+      </div>
+    </div>
+  </div>
+
+  <div class="dots">
+    <span class="dot active" onclick="moveToSlide(0)" aria-label="Slide 1"></span>
+    <span class="dot" onclick="moveToSlide(1)" aria-label="Slide 2"></span>
+    <span class="dot" onclick="moveToSlide(2)" aria-label="Slide 3"></span>
+  </div>
+
+  <body>
+        <div class="product-grid">
+
+        <!-- Card 1 -->
+        <a href="tp1.html   " class="product-card-link">
+            <div class="product-card">
+              <i class="far fa-heart heart-icon"></i>
+              <img src="https://storage.googleapis.com/a1aa/image/c89eb31f-cfdd-4ce1-be05-248e8281f861.jpg" alt="Forest Honey">
+              <p class="product-title">Cold-Pressed<br>Forest Honey</p>
+              <select class="product-select"><option>300 gm</option></select>
+              <div class="product-bottom">
+                <span class="price">₹350</span>
+                <button class="add-btn">Add</button>
+              </div>
+            </div>
+          </a>
+          
+        
+      
+        <!-- Card 2 -->
+        <div class="product-card">
+          <i class="far fa-heart heart-icon"></i>
+          <img src="https://storage.googleapis.com/a1aa/image/6df379c9-813d-4f4b-5039-d686cfb8fbee.jpg" alt="Mango Pickle">
+          <p class="product-title">Grandma’s Mango Pickle<br>(No Preservatives)</p>
+          <select class="product-select"><option>250 gm</option></select>
+          <div class="product-bottom">
+            <span class="price">₹320</span>
+            <button class="add-btn">Add</button>
+          </div>
+        </div>
+      
+        <!-- Card 3 -->
+        <div class="product-card">
+          <i class="far fa-heart heart-icon"></i>
+          <img src="Potato.jpg" alt="Virgin Coconut Oil">
+          <p class="product-title">Organic<br>Natural Potato</p>
+          <select class="product-select"><option>500 ml</option></select>
+          <div class="product-bottom">
+            <span class="price">₹480</span>
+            <button class="add-btn">Add</button>
+          </div>
+        </div>
+      
+        <!-- Card 4 -->
+        <div class="product-card">
+          <i class="far fa-heart heart-icon"></i>
+          <img src="Beetroot.jpg" alt="Beetroot">
+          <p class="product-title">Traditional Chyawanprash<br>(No Chemicals)</p>
+          <select class="product-select"><option>500 gm</option></select>
+          <div class="product-bottom">
+            <span class="price">₹390</span>
+            <button class="add-btn">Add</button>
+          </div>
+        </div>
+      
+        <!-- Card 5 -->
+        <div class="product-card">
+          <i class="far fa-heart heart-icon"></i>
+          <img src="Jaggery Powder.jpg" alt="Jaggery">
+          <p class="product-title">Pure Desi Khand/Jaggery Powder<br>(Chemical-Free)</p>
+          <select class="product-select"><option>1 kg</option></select>
+          <div class="product-bottom">
+            <span class="price">₹120</span>
+            <button class="add-btn">Add</button>
+          </div>
+        </div>
+      
+        <!-- Card 6 -->
+        <div class="product-card">
+          <i class="far fa-heart heart-icon"></i>
+          <img src="pomegranate.jpg" alt="Pomegranate">
+          <p class="product-title">A2 Gir Cow Ghee<br>(Grass-Fed)</p>
+          <select class="product-select"><option>250 ml</option></select>
+          <div class="product-bottom">
+            <span class="price">₹520</span>
+            <button class="add-btn">Add</button>
+          </div>
+        </div>
+      
+        <!-- Card 7 -->
+        <div class="product-card">
+          <i class="far fa-heart heart-icon"></i>
+          <img src="Mango pic.jpg" alt="Multigrain Atta">
+          <p class="product-title">Organic<br>Mangoes</p>
+          <select class="product-select"><option>1 kg</option></select>
+          <div class="product-bottom">
+            <span class="price">₹150</span>
+            <button class="add-btn">Add</button>
+          </div>
+        </div>
+      
+        <!-- Card 8 -->
+        <div class="product-card">
+          <i class="far fa-heart heart-icon"></i>
+          <img src="Broccoli.jpg" alt="Natural Soap">
+          <p class="product-title">Handmade Natural Soap<br>(No Fragrance)</p>
+          <select class="product-select"><option>100 gm</option></select>
+          <div class="product-bottom">
+            <span class="price">₹80</span>
+            <button class="add-btn">Add</button>
+          </div>
+        </div>
+      
+      </div>
+   <!-- Footer -->
+   <footer>
+    <div class="footer-container">
+    
+      <!-- Column 1: Logo + Links -->
+      <div class="footer-column footer-logo" style="max-width: 180px;">
+        <h1>OrgMart <span>🌱</span></h1>
+        <div class="footer-links" style="margin-top: 16px;">
+          <a href="#">Home</a>
+          <a href="#">Shop</a>
+          <a href="#">Sustainability</a>
+          <a href="#">About Us</a>
+          <a href="#">Contact Us</a>
+        </div>
+      </div>
+
+      <!-- Column 2: Contact + Social -->
+      <div class="footer-column" style="max-width: 280px;">
+        <div>
+          <h2 class="footer-title">Get in Touch</h2>
+          <p class="contact-item">
+            <i class="fas fa-map-marker-alt" style="color: #d43d3d;"></i>
+            Plot No. 123, Greenbelt Lane, VegCity, IN 400001
+          </p>
+          <p class="contact-item">
+            <i class="fas fa-phone-alt"></i>
+            +91 98765 43210
+          </p>
+          <p class="contact-item">
+            <i class="fas fa-envelope"></i>
+            hello@orgmart.in
+          </p>
+        </div>
+        <div style="margin-top: 20px;">
+          <h3 class="footer-title">Stay Connected</h3>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i>Instagram</a>
+            <span>|</span>
+            <a href="#"><i class="fab fa-facebook-f"></i>Facebook</a>
+            <span>|</span>
+            <a href="#"><i class="fab fa-twitter"></i>Twitter</a>
+            <span>|</span>
+            <a href="#"><i class="fab fa-linkedin-in"></i>LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 3: Why OrgMart -->
+      <div class="footer-column" style="max-width: 280px;">
+        <h2 class="footer-title">Why OrgMart?</h2>
+        <p style="line-height: 1.6;">
+          At OrgMart, we believe food should be real, clean, and kind to the planet.
+          <br><br>
+          All our produce is certified organic and comes straight from our trusted farmer network—no middlemen, no shady labels.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Footer Note -->
+    <div class="footer-note">
+      <p>© 2025 OrgMart. All rights reserved.</p>
+      <p>
+        <a href="#">[Privacy Policy]</a> |
+        <a href="#">[Terms & Conditions]</a>
+      </p>
+    </div>
+  </footer>
+
+    
+  <script>
+ const wrapper = document.getElementById('carouselWrapper');
+    const dots = document.querySelectorAll('.dot');
+    let currentSlide = 0;
+    const totalSlides = 3;
+
+    function moveToSlide(index) {
+      currentSlide = index;
+      wrapper.style.transform = `translateX(-${index * 100}%)`;
+      updateDots();
+    }
+
+    function updateDots() {
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[currentSlide].classList.add('active');
+    }
+
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      moveToSlide(currentSlide);
+    }, 5000);
+
+
+     // Toggle heart icon color and type
+     document.querySelectorAll('.heart-icon').forEach(icon => {
+      icon.addEventListener('click', () => {
+        icon.classList.toggle('filled');
+        if (icon.classList.contains('filled')) {
+          icon.classList.remove('far');
+          icon.classList.add('fas');
+        } else {
+          icon.classList.remove('fas');
+          icon.classList.add('far');
+        }
+      });
+    });
+
+  document.querySelectorAll('.heart-icon').forEach(icon => {
+    icon.addEventListener('click', () => {
+      icon.classList.toggle('filled');
+      icon.classList.toggle('fas');
+      icon.classList.toggle('far');
+    });
+  });
+
+    function toggleHeart(el) {
+      el.classList.toggle("liked");
+    }
+
+  </script>
+
+</body>
+</html>
